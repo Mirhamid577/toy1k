@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
 
-const WEDDING_DATE = new Date(2026, 10, 5, 17, 0, 0);
+const WEDDING_DATE = new Date(2026, 11, 16, 18, 0, 0);
 
 function useCountdown() {
   const [left, setLeft] = useState(() => WEDDING_DATE - new Date());
@@ -20,17 +20,18 @@ function useCountdown() {
 
 function Calendar() {
   const cells = [];
-  for (let i = 0; i < 6; i++) cells.push(<div key={`e${i}`} className="flex items-center justify-center h-[30px] md:h-[34px]" />);
+  // December 2026 starts on Thursday: 3 leading empty cells in a Monday-start grid
+  for (let i = 0; i < 3; i++) cells.push(<div key={`e${i}`} className="flex items-center justify-center h-[30px] md:h-[34px]" />);
   for (let d = 1; d <= 31; d++) {
     cells.push(
       <div key={d} className="flex items-center justify-center h-[30px] md:h-[34px]">
-        {d === 5 ? (
+        {d === 16 ? (
           <div className="relative w-[26px] h-[24px] md:w-[30px] md:h-[28px] flex items-center justify-center">
             <svg viewBox="0 0 24 22" className="absolute inset-0 w-full h-full drop-shadow-sm" fill="#E1BC7C">
               <path d="M12 21C12 21 1.5 13.5 1.5 7.5C1.5 4.46 3.96 2 7 2C8.76 2 10.35 2.81 11.4 4.09L12 4.8L12.6 4.09C13.65 2.81 15.24 2 17 2C20.04 2 22.5 4.46 22.5 7.5C22.5 13.5 12 21 12 21Z" />
             </svg>
             <span className="relative z-10 text-[11px] md:text-[12px] font-bold" style={{ color: "rgb(62, 0, 1)" }}>
-              5
+              16
             </span>
           </div>
         ) : (
@@ -49,7 +50,7 @@ function Calendar() {
           className="text-center py-2.5 text-[13px] md:text-[14px] font-semibold tracking-wide border-b"
           style={{ borderColor: "color-mix(in srgb, rgb(225, 188, 124) 27%, transparent)" }}
         >
-          NOYABR 2026
+          DEKABR 2026
         </div>
         <div className="grid grid-cols-7 border-b-2" style={{ borderColor: "rgb(225, 188, 124)" }}>
           {["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map((d) => (
@@ -77,16 +78,16 @@ export default function DateSection() {
         <Reveal as="h3" className="font-normal uppercase text-[15px] md:text-[26px] flex flex-col items-center font-qellia" style={{ fontWeight: 700, letterSpacing: "0.04em" }}>
           <span dir="auto">Sizni tantanamizga taklif etamiz:</span>
         </Reveal>
-        <Reveal className="text-[20px] md:text-[30px]">17:00</Reveal>
+        <Reveal className="text-[20px] md:text-[30px]">18:00</Reveal>
         <Reveal className="flex items-center gap-6">
           <span className="text-[12px] md:text-[16px] uppercase" style={{ textAlign: "right" }}>
-            <span dir="auto">PAYSHANBA</span>
+            <span dir="auto">CHORSHANBA</span>
           </span>
           <div className="w-[2px] h-6 md:h-8" style={{ backgroundColor: "rgb(225, 188, 124)" }} />
-          <span className="text-[30px] md:text-[40px]">5</span>
+          <span className="text-[30px] md:text-[40px]">16</span>
           <div className="w-[2px] h-6 md:h-8" style={{ backgroundColor: "rgb(225, 188, 124)" }} />
           <span className="text-[12px] md:text-[16px] uppercase" style={{ textAlign: "left" }}>
-            <span dir="auto">NOYABR</span>
+            <span dir="auto">DEKABR</span>
           </span>
         </Reveal>
         <Reveal className="text-[18px] md:text-[24px]">2026</Reveal>
@@ -118,7 +119,7 @@ export default function DateSection() {
         </Reveal>
         <Calendar />
         <a
-          href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Odilxon%20%26%20Odinaxon&dates=20261105T170000/20261105T190000&location=Malika%20Tantanalar%20Saroyi%2C%20Oqqorgon%20tumani"
+          href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Muhammad%20%26%20Xadicha&dates=20261216T180000/20261216T200000&location=Navro'z%20To'yxonasi%2C%20Chirchiq"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 inline-flex items-center justify-center text-sm tracking-wider underline underline-offset-4 decoration-1 transition-opacity hover:opacity-70"

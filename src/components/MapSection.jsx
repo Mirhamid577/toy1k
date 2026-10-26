@@ -12,9 +12,9 @@ export default function MapSection() {
             className="mx-auto mt-3 max-w-sm md:max-w-[500px] text-center text-sm md:text-base tracking-wide whitespace-pre-line flex flex-col items-center pb-3 border-b border-[#E1BC7C20]"
             style={{ backgroundColor: "transparent", color: "rgb(225, 188, 124)", fontFamily: '"Times New Roman", serif' }}
           >
-            <span dir="auto">Malika Tantanalar Saroyi</span>
+            <span dir="auto">Navro'z To'yxonasi</span>
             <span dir="auto" className="mt-1 text-xs opacity-75">
-              Oqqorgon tumani
+              Toshkent viloyati, Chirchiq shahri
             </span>
           </div>
         </Reveal>
@@ -22,7 +22,7 @@ export default function MapSection() {
           <iframe
             title="map"
             className="h-[280px] md:h-[380px] w-full max-w-[340px] md:max-w-[560px] rounded-2xl overflow-hidden shadow-lg"
-            src="https://yandex.uz/map-widget/v1/?ll=69.047870%2C40.879430&z=16&pt=69.047870,40.879430,pm2rdm"
+            src="https://yandex.uz/map-widget/v1/geo/toshkent/771288885/?ll=69.279737%2C41.311151&z=12&pt=69.279737,41.311151,pm2rdm"
             loading="lazy"
             allowFullScreen=""
             referrerPolicy="no-referrer-when-downgrade"

@@ -9,9 +9,15 @@ const IDEAS = [
   "Hayotingiz har kuni yangi baxtli lahzalarga boy bo'lsin!",
 ];
 
+const pad2 = (n) => String(n).padStart(2, "0");
+
 const formatDate = (value) => {
   const d = value ? new Date(value) : new Date();
-  return Number.isNaN(d.getTime()) ? new Date().toLocaleDateString("en-US") : d.toLocaleDateString("en-US");
+  if (Number.isNaN(d.getTime())) {
+    const now = new Date();
+    return `${pad2(now.getDate())}.${pad2(now.getMonth() + 1)}.${now.getFullYear()}`;
+  }
+  return `${pad2(d.getDate())}.${pad2(d.getMonth() + 1)}.${d.getFullYear()}`;
 };
 
 const PAGE_SIZE = 10;

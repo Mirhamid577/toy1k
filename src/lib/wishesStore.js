@@ -3,11 +3,63 @@ import mqtt from "mqtt";
 const BROKER = import.meta.env.VITE_MQTT_URL || "wss://broker.emqx.io:8084/mqtt";
 const TOPIC =
   import.meta.env.VITE_MQTT_TOPIC ||
-  "chorlove/wedding/odilxon-odinaxon-2026/wishes/v1";
+  "chorlove/wedding/muhammad-xadicha-2026/wishes/v1";
+
+const OUTBOX_KEY = "wishes_outbox_v1";
 
 let client = null;
+let connected = false;
+let retryTimer = null;
 
 export const wishesLive = true;
+
+function readOutbox() {
+  try {
+    const raw = localStorage.getItem(OUTBOX_KEY);
+    const list = raw ? JSON.parse(raw) : null;
+    return Array.isArray(list) ? list : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeOutbox(list) {
+  try {
+    if (list) localStorage.setItem(OUTBOX_KEY, JSON.stringify(list));
+    else localStorage.removeItem(OUTBOX_KEY);
+  } catch {
+    /* storage unavailable — skip, wishes still work in-memory */
+  }
+}
+
+const outboxEquals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+function scheduleRetry() {
+  if (retryTimer) return;
+  retryTimer = setTimeout(() => {
+    retryTimer = null;
+    flushOutbox();
+  }, 3000);
+}
+
+// Send the pending list once the connection is up; drop the outbox only after
+// a confirmed publish of exactly that list.
+function flushOutbox() {
+  if (!client || !connected) {
+    scheduleRetry();
+    return;
+  }
+  const outbox = readOutbox();
+  if (!outbox) return;
+  const payload = JSON.stringify({ wishes: outbox });
+  client.publish(TOPIC, payload, { retain: true, qos: 1 }, (err) => {
+    if (err) {
+      scheduleRetry();
+      return;
+    }
+    if (outboxEquals(readOutbox(), outbox)) writeOutbox(null);
+  });
+}
 
 export function subscribeWishes(onData) {
   if (client) {
@@ -26,7 +78,19 @@ export function subscribeWishes(onData) {
     keepalive: 30,
   });
 
-  client.on("connect", () => client.subscribe(TOPIC, { qos: 1 }));
+  client.on("connect", () => {
+    connected = true;
+    try {
+      client.subscribe(TOPIC, { qos: 1 });
+    } catch {
+      /* ignore */
+    }
+    flushOutbox();
+  });
+
+  client.on("close", () => {
+    connected = false;
+  });
 
   client.on("message", (_topic, buf) => {
     try {
@@ -45,19 +109,15 @@ export function subscribeWishes(onData) {
       /* ignore */
     }
     client = null;
+    connected = false;
   };
 }
 
+// Fulfulling immediately on purpose: the wish is stored durably in the outbox
+// and will be delivered (with automatic retries) once the connection is ready,
+// so the UI never waits on the broker.
 export function publishWishes(wishes) {
-  if (!client || !client.connected) {
-    return Promise.reject(new Error("MQTT is not connected"));
-  }
-  return new Promise((resolve, reject) => {
-    client.publish(
-      TOPIC,
-      JSON.stringify({ wishes }),
-      { retain: true, qos: 1 },
-      (err) => (err ? reject(err) : resolve())
-    );
-  });
+  writeOutbox(wishes);
+  flushOutbox();
+  return Promise.resolve();
 }

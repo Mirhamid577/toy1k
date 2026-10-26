@@ -18,7 +18,7 @@ export default function InviteIntro() {
           className="w-[80%] min-h-[80px] flex items-center justify-center leading-[55px] md:leading-[80px] whitespace-nowrap"
           style={{ fontSize: "40px" }}
         >
-          <span dir="auto">Odilxon</span>
+          <span dir="auto">Muhammad</span>
         </h3>
         <div className="text-[35px] md:text-[42px]" style={{ color: "rgb(225, 188, 124)" }}>
           &amp;
@@ -27,7 +27,7 @@ export default function InviteIntro() {
           className="w-[80%] min-h-[80px] flex items-center justify-center leading-[55px] md:leading-[80px] whitespace-nowrap"
           style={{ fontSize: "40px" }}
         >
-          <span dir="auto">Odinaxon</span>
+          <span dir="auto">Xadicha</span>
         </h3>
       </Reveal>
 
@@ -42,7 +42,7 @@ export default function InviteIntro() {
         className="relative flex flex-col items-center gap-2 text-center mt-2"
         style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
       ><span className="text-xs uppercase tracking-[0.2em] opacity-80 mb-1">To'y Sanasi</span>
-        <div className="text-lg md:text-xl font-medium tracking-wider">5-Noyabr 2026 17:00</div>
+        <div className="text-lg md:text-xl font-medium tracking-wider">16-Dekabr 2026 18:00</div>
       </Reveal>
 
       <Reveal
@@ -50,7 +50,7 @@ export default function InviteIntro() {
         style={{ fontFamily: '"Times New Roman", serif', color: "rgb(225, 188, 124)" }}
       >
         <span className="text-[16px] text-center uppercase whitespace-pre-line leading-relaxed font-medium">
-          <span dir="auto">Kamolovlar oilasi</span>
+          <span dir="auto">Abdurahmonovlar oilasi</span>
         </span>
       </Reveal>
     </div>

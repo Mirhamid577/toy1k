@@ -90,7 +90,7 @@ export default function App() {
                       lineHeight: 1.45,
                     }}
                   >
-                    Odilxon
+                    Muhammad
                   </RevealLabel>
                   <RevealLabel style={{ fontSize: "clamp(29px, 6vw, 53px)", lineHeight: 1.3 }}>&</RevealLabel>
                   <RevealLabel
@@ -101,7 +101,7 @@ export default function App() {
                       lineHeight: 1.45,
                     }}
                   >
-                    Odinaxon
+                    Xadicha
                   </RevealLabel>
                 </div>
               </header>
