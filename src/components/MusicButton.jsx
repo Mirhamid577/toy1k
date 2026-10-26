@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 
-const AUDIO_SRC = "/music/oshiqman.m4a";
+const AUDIO_SRC =
+  "/music/Patrick Watson - Je te laisserai des mots.mp3";
 
 /**
  * Audio lives here and stays mounted for the whole page lifetime, so playback
