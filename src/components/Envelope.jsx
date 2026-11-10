@@ -195,9 +195,9 @@ export default function Envelope({ onOpen, onExited, opening }) {
                   }}
                   className="gate-fade mb-2 flex gap-2 flex-row justify-center items-center leading-tight font-nautigal text-5xl sm:text-6xl md:text-7xl"
                 >
-                  <span className="block text-center">Odilxon</span>
+                  <span className="block text-center">Muhammad</span>
                   <span className="block text-center text-2xl leading-none sm:text-3xl">&amp;</span>
-                  <span className="block text-center">Odinaxon</span>
+                  <span className="block text-center">Xadicha</span>
                 </h1>
 
                 <div className="flex items-center justify-center gap-3 mb-2">
